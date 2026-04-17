@@ -111,7 +111,10 @@ def crossref_enrich(doi: str) -> Dict[str, Any]:
 
 
 def fetch_feed_entries(feed_url: str) -> List[Any]:
-    parsed = feedparser.parse(feed_url)
+    # Many publisher RSS endpoints behave better when fetched with an explicit user-agent.
+    r = requests.get(feed_url, headers=HEADERS, timeout=TIMEOUT)
+    r.raise_for_status()
+    parsed = feedparser.parse(r.content)
     return parsed.entries
 
 

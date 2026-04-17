@@ -119,6 +119,13 @@ st.info(
     "The sections on why a paper seems timely or why it may fit a journal are interpretive summaries, not the actual editor decision rationale."
 )
 
+# family coverage check
+family_counts = brief_df["Family"].value_counts().to_dict()
+missing_families = [fam for fam in selected_families if family_counts.get(fam, 0) == 0]
+if missing_families:
+    st.error("No articles were recovered for: " + ", ".join(missing_families) + ". This usually means a feed URL or publisher-side RSS response needs checking.")
+
+
 left, right = st.columns([1.4, 1])
 with left:
     st.subheader("This week's trend summary")

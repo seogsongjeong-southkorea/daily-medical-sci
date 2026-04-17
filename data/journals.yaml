@@ -1,89 +1,77 @@
 journals:
-  - family: "JAMA"
-    journal: "JAMA"
-    feed_url: "https://jamanetwork.com/rss/site_25/0.xml"
-    homepage: "https://jamanetwork.com/journals/jama"
-  - family: "JAMA"
-    journal: "JAMA Internal Medicine"
-    feed_url: "https://jamanetwork.com/rss/site_26/0.xml"
-    homepage: "https://jamanetwork.com/journals/jamainternalmedicine"
-  - family: "JAMA"
-    journal: "JAMA Oncology"
-    feed_url: "https://jamanetwork.com/rss/site_440/0.xml"
-    homepage: "https://jamanetwork.com/journals/jamaoncology"
-  - family: "JAMA"
-    journal: "JAMA Neurology"
-    feed_url: "https://jamanetwork.com/rss/site_460/0.xml"
-    homepage: "https://jamanetwork.com/journals/jamaneurology"
-  - family: "JAMA"
-    journal: "JAMA Psychiatry"
-    feed_url: "https://jamanetwork.com/rss/site_469/0.xml"
-    homepage: "https://jamanetwork.com/journals/jamapsychiatry"
-  - family: "JAMA"
-    journal: "JAMA Pediatrics"
-    feed_url: "https://jamanetwork.com/rss/site_481/0.xml"
-    homepage: "https://jamanetwork.com/journals/jamapediatrics"
-  - family: "JAMA"
-    journal: "JAMA Surgery"
-    feed_url: "https://jamanetwork.com/rss/site_493/0.xml"
-    homepage: "https://jamanetwork.com/journals/jamasurgery"
-  - family: "JAMA"
-    journal: "JAMA Cardiology"
-    feed_url: "https://jamanetwork.com/rss/site_1136/0.xml"
-    homepage: "https://jamanetwork.com/journals/jamacardiology"
-  - family: "JAMA"
-    journal: "JAMA Network Open"
-    feed_url: "https://jamanetwork.com/rss/site_504.xml"
-    homepage: "https://jamanetwork.com/journals/jamanetworkopen"
-  - family: "Lancet"
-    journal: "The Lancet"
-    feed_url: "https://www.thelancet.com/rssfeed/lancet_online.xml"
-    homepage: "https://www.thelancet.com/journals/lancet/home"
-  - family: "Lancet"
-    journal: "The Lancet Public Health"
-    feed_url: "https://www.thelancet.com/rssfeed/lanpub_online.xml"
-    homepage: "https://www.thelancet.com/journals/lanpub/home"
-  - family: "Lancet"
-    journal: "The Lancet Digital Health"
-    feed_url: "https://www.thelancet.com/rssfeed/landig_online.xml"
-    homepage: "https://www.thelancet.com/journals/landig/home"
-  - family: "Lancet"
-    journal: "The Lancet Gastroenterology & Hepatology"
-    feed_url: "https://www.thelancet.com/rssfeed/langas_online.xml"
-    homepage: "https://www.thelancet.com/journals/langas/home"
-  - family: "Lancet"
-    journal: "The Lancet Oncology"
-    feed_url: "https://www.thelancet.com/rssfeed/lanonc_online.xml"
-    homepage: "https://www.thelancet.com/journals/lanonc/home"
-  - family: "Lancet"
-    journal: "The Lancet Healthy Longevity"
-    feed_url: "https://www.thelancet.com/rssfeed/lanhl_online.xml"
-    homepage: "https://www.thelancet.com/journals/lanhl/home"
-  - family: "Lancet"
-    journal: "The Lancet Regional Health – Western Pacific"
-    feed_url: "https://www.thelancet.com/rssfeed/lanwpc_online.xml"
-    homepage: "https://www.thelancet.com/journals/lanwpc/home"
-  - family: "BMJ"
-    journal: "The BMJ"
-    feed_url: "https://www.bmj.com/rss/research.xml"
-    homepage: "https://www.bmj.com/research"
-  - family: "BMJ"
-    journal: "BMJ Open"
-    feed_url: "https://bmjopen.bmj.com/rss/current.xml"
-    homepage: "https://bmjopen.bmj.com/"
-  - family: "BMJ"
-    journal: "BMJ Medicine"
-    feed_url: "https://bmjmedicine.bmj.com/rss/current.xml"
-    homepage: "https://bmjmedicine.bmj.com/"
-  - family: "BMJ"
-    journal: "Gut"
-    feed_url: "https://gut.bmj.com/rss/current.xml"
-    homepage: "https://gut.bmj.com/"
-  - family: "BMJ"
-    journal: "Heart"
-    feed_url: "https://heart.bmj.com/rss/current.xml"
-    homepage: "https://heart.bmj.com/"
-  - family: "NEJM"
-    journal: "NEJM"
-    feed_url: "https://www.nejm.org/action/showFeed?type=etoc&feed=rss&jc=nejm"
-    homepage: "https://www.nejm.org/toc/nejm/current"
+- family: JAMA
+  journal: JAMA
+  feed_url: https://jamanetwork.com/rss/site_3/onlineFirst_67.xml
+  homepage: https://jamanetwork.com/journals/jama
+- family: JAMA
+  journal: JAMA Internal Medicine
+  feed_url: https://jamanetwork.com/rss/site_15/onlineFirst_71.xml
+  homepage: https://jamanetwork.com/journals/jamainternalmedicine
+- family: JAMA
+  journal: JAMA Oncology
+  feed_url: https://jamanetwork.com/rss/site_159/onlineFirst_174.xml
+  homepage: https://jamanetwork.com/journals/jamaoncology
+- family: JAMA
+  journal: JAMA Neurology
+  feed_url: https://jamanetwork.com/rss/site_16/onlineFirst_72.xml
+  homepage: https://jamanetwork.com/journals/jamaneurology
+- family: JAMA
+  journal: JAMA Psychiatry
+  feed_url: https://jamanetwork.com/rss/site_14/onlineFirst_70.xml
+  homepage: https://jamanetwork.com/journals/jamapsychiatry
+- family: JAMA
+  journal: JAMA Pediatrics
+  feed_url: https://jamanetwork.com/rss/site_19/onlineFirst_75.xml
+  homepage: https://jamanetwork.com/journals/jamapediatrics
+- family: JAMA
+  journal: JAMA Surgery
+  feed_url: https://jamanetwork.com/rss/site_20/onlineFirst_76.xml
+  homepage: https://jamanetwork.com/journals/jamasurgery
+- family: JAMA
+  journal: JAMA Cardiology
+  feed_url: https://jamanetwork.com/rss/site_192/onlineFirst_184.xml
+  homepage: https://jamanetwork.com/journals/jamacardiology
+- family: JAMA
+  journal: JAMA Network Open
+  feed_url: https://jamanetwork.com/rss/site_214/187.xml
+  homepage: https://jamanetwork.com/journals/jamanetworkopen
+- family: Lancet
+  journal: The Lancet
+  feed_url: https://www.thelancet.com/rssfeed/lancet_online.xml
+  homepage: https://www.thelancet.com/journals/lancet/home
+- family: Lancet
+  journal: The Lancet Public Health
+  feed_url: https://www.thelancet.com/rssfeed/lanpub_online.xml
+  homepage: https://www.thelancet.com/journals/lanpub/home
+- family: Lancet
+  journal: The Lancet Digital Health
+  feed_url: https://www.thelancet.com/rssfeed/landig_online.xml
+  homepage: https://www.thelancet.com/journals/landig/home
+- family: Lancet
+  journal: The Lancet Gastroenterology & Hepatology
+  feed_url: https://www.thelancet.com/rssfeed/langas_online.xml
+  homepage: https://www.thelancet.com/journals/langas/home
+- family: Lancet
+  journal: The Lancet Oncology
+  feed_url: https://www.thelancet.com/rssfeed/lanonc_online.xml
+  homepage: https://www.thelancet.com/journals/lanonc/home
+- family: Lancet
+  journal: The Lancet Healthy Longevity
+  feed_url: https://www.thelancet.com/rssfeed/lanhl_online.xml
+  homepage: https://www.thelancet.com/journals/lanhl/home
+- family: Lancet
+  journal: The Lancet Regional Health – Western Pacific
+  feed_url: https://www.thelancet.com/rssfeed/lanwpc_online.xml
+  homepage: https://www.thelancet.com/journals/lanwpc/home
+- family: BMJ
+  journal: The BMJ
+  feed_url: https://www.bmj.com/rss/research.xml
+  homepage: https://www.bmj.com/research
+- family: BMJ
+  journal: BMJ Medicine
+  feed_url: https://bmjmedicine.bmj.com/rss/current.xml
+  homepage: https://bmjmedicine.bmj.com/
+- family: NEJM
+  journal: NEJM
+  feed_url: https://www.nejm.org/action/showFeed?type=etoc&feed=rss&jc=nejm
+  homepage: https://www.nejm.org/toc/nejm/current
