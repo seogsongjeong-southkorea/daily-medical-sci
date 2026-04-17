@@ -19,11 +19,7 @@ from utils.scoring import (
 APP_DIR = Path(__file__).parent
 CONFIG_PATH = APP_DIR / "data" / "journals.yaml"
 
-st.set_page_config(
-    page_title="Top Medical Journal Online-First Briefing",
-    page_icon="🩺",
-    layout="wide",
-)
+st.set_page_config(page_title="Top Medical Journal Online-First Briefing", page_icon="🩺", layout="wide")
 
 
 def fmt_dt(dt):
@@ -47,16 +43,21 @@ with st.sidebar:
     max_items = st.slider("Maximum papers", min_value=10, max_value=300, value=60, step=10)
     refresh = st.button("Refresh now")
 
+
 @st.cache_data(ttl=3600, show_spinner=False)
-def get_articles(days_back: int):
+def get_payload(days_back: int):
     journal_cfg = load_journal_config(str(CONFIG_PATH))
     return fetch_articles(journal_cfg, days_back=days_back)
 
+
 if refresh:
-    get_articles.clear()
+    get_payload.clear()
 
 with st.spinner("Fetching recent papers and building the weekly briefing..."):
-    raw_articles = get_articles(days_back)
+    payload = get_payload(days_back)
+
+raw_articles = payload["articles"]
+journal_status = payload["journal_status"]
 
 rows = []
 for art in raw_articles:
@@ -79,6 +80,7 @@ for art in raw_articles:
             "RSS date": fmt_dt(art["rss_date"]),
             "Best available date": fmt_dt(art["best_date"]),
             "Date source": art["date_source"],
+            "Source mode": art.get("source_mode", "rss"),
             "Family": art["family"],
             "Journal": art["journal"],
             "Title": art["title"],
@@ -103,6 +105,7 @@ st.markdown(
 
 if brief_df.empty:
     st.warning("No papers matched the current filters.")
+    st.dataframe(pd.DataFrame(journal_status), use_container_width=True, hide_index=True)
     st.stop()
 
 trend_summaries = trend_cluster_summary(brief_df.to_dict("records"))
@@ -115,16 +118,17 @@ col3.metric("Journals selected", len(selected_journals))
 col4.metric("Trend signals", len(set(all_tags)))
 
 st.info(
-    "This app uses publisher RSS feeds plus public bibliographic enrichment when available. "
+    "This app uses publisher RSS feeds plus Crossref fallback retrieval when a feed is empty or inaccessible. "
     "The sections on why a paper seems timely or why it may fit a journal are interpretive summaries, not the actual editor decision rationale."
 )
 
-# family coverage check
 family_counts = brief_df["Family"].value_counts().to_dict()
 missing_families = [fam for fam in selected_families if family_counts.get(fam, 0) == 0]
 if missing_families:
-    st.error("No articles were recovered for: " + ", ".join(missing_families) + ". This usually means a feed URL or publisher-side RSS response needs checking.")
+    st.error("No articles were recovered for: " + ", ".join(missing_families) + ". Check the recovery table below.")
 
+with st.expander("Journal recovery status"):
+    st.dataframe(pd.DataFrame(journal_status), use_container_width=True, hide_index=True)
 
 left, right = st.columns([1.4, 1])
 with left:
@@ -139,12 +143,7 @@ with left:
 with right:
     st.subheader("Top recurring tags")
     if all_tags:
-        tag_df = (
-            pd.Series(all_tags)
-            .value_counts()
-            .rename_axis("Trend")
-            .reset_index(name="Count")
-        )
+        tag_df = pd.Series(all_tags).value_counts().rename_axis("Trend").reset_index(name="Count")
         st.dataframe(tag_df, use_container_width=True, hide_index=True)
     else:
         st.write("No trend tags identified yet.")
@@ -155,6 +154,7 @@ show_cols = [
     "First online",
     "Issue / print",
     "Date source",
+    "Source mode",
     "Family",
     "Journal",
     "Title",
@@ -163,7 +163,6 @@ show_cols = [
     "Trend Tags",
     "Abstract Available",
 ]
-
 st.dataframe(brief_df[show_cols], use_container_width=True, hide_index=True)
 
 csv = brief_df.drop(columns=["trend_tags_list"]).to_csv(index=False).encode("utf-8-sig")
@@ -178,12 +177,13 @@ st.subheader("Paper cards")
 for _, row in brief_df.iterrows():
     with st.container(border=True):
         st.markdown(f"### [{row['Title']}]({row['Link']})")
-        meta_cols = st.columns(5)
+        meta_cols = st.columns(6)
         meta_cols[0].markdown(f"**Journal**  \n{row['Journal']}")
         meta_cols[1].markdown(f"**First online**  \n{row['First online']}")
         meta_cols[2].markdown(f"**Issue / print**  \n{row['Issue / print']}")
         meta_cols[3].markdown(f"**Best date**  \n{row['Best available date']}")
         meta_cols[4].markdown(f"**Date source**  \n{row['Date source']}")
+        meta_cols[5].markdown(f"**Recovered via**  \n{row['Source mode']}")
 
         meta_cols2 = st.columns(4)
         meta_cols2[0].markdown(f"**Checked on**  \n{row['Checked on']}")
@@ -207,12 +207,3 @@ for _, row in brief_df.iterrows():
 
         if not row["Abstract Available"]:
             st.warning("No abstract was recovered from feed metadata or Crossref. Manual review on the publisher page is recommended.")
-
-with st.expander("Suggested next upgrades"):
-    st.markdown(
-        "- Add GitHub Actions to save a daily JSON snapshot for archive pages.\n"
-        "- Add family tabs and dedicated pages for JAMA-only or Lancet-only browsing.\n"
-        "- Add user topic dashboards such as MASLD, cardiology, psychiatry, or AI in medicine.\n"
-        "- Add optional LLM-backed narrative summaries through an API key stored in Streamlit secrets.\n"
-        "- Add weekly email digest export."
-    )
